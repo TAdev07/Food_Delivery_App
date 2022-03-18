@@ -1,25 +1,38 @@
 import 'package:flutter/material.dart';
+import 'package:food_app/controllers/recommended_product_controller.dart';
+import 'package:food_app/models/products_model.dart';
+import 'package:food_app/routes/route_helper.dart';
+import 'package:food_app/utils/app_constants.dart';
 import 'package:food_app/utils/colors.dart';
 import 'package:food_app/utils/dimensions.dart';
 import 'package:food_app/widgets/app_icon.dart';
 import 'package:food_app/widgets/big_text.dart';
 import 'package:food_app/widgets/expandable_text_widget.dart';
+import 'package:get/get.dart';
 
 class RecommendedFoodDetail extends StatelessWidget {
-  const RecommendedFoodDetail({Key? key}) : super(key: key);
+  final int pageId;
+  RecommendedFoodDetail({Key? key, required this.pageId}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    ProductModel product =
+        Get.find<RecommendedProductController>().recommendedProductList[pageId];
     return Scaffold(
         backgroundColor: Colors.white,
         body: CustomScrollView(
           slivers: [
             SliverAppBar(
+              automaticallyImplyLeading: false,
               toolbarHeight: 70,
               title: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  AppIcon(icon: Icons.clear),
+                  GestureDetector(
+                      onTap: () {
+                        Get.toNamed(RouteHelper.getInitial());
+                      },
+                      child: AppIcon(icon: Icons.clear)),
                   AppIcon(icon: Icons.shopping_cart_outlined),
                 ],
               ),
@@ -28,7 +41,7 @@ class RecommendedFoodDetail extends StatelessWidget {
                 child: Container(
                   child: Center(
                       child: BigText(
-                          text: "Chinese Side", size: Dimensions.font26)),
+                          text: product.name!, size: Dimensions.font26)),
                   width: double.maxFinite,
                   padding: EdgeInsets.only(top: 5, bottom: 10),
                   decoration: BoxDecoration(
@@ -44,8 +57,10 @@ class RecommendedFoodDetail extends StatelessWidget {
               backgroundColor: AppColors.yellowColor,
               expandedHeight: 300,
               flexibleSpace: FlexibleSpaceBar(
-                background: Image.asset(
-                  "assets/image/food0.png",
+                background: Image.network(
+                  AppConstants.BASE_URL +
+                      AppConstants.UPLOAD_URL +
+                      product.img!,
                   width: double.maxFinite,
                   fit: BoxFit.cover,
                 ),
@@ -55,9 +70,7 @@ class RecommendedFoodDetail extends StatelessWidget {
                 child: Column(
               children: [
                 Container(
-                  child: ExpandableTextWidget(
-                      text:
-                          'Astral City được thiết kế theo phong cách đương đại, tối ưu hóAstral City được thiết kế theo phong cách đương đại, tối ưu hóa không gian, đan xen diện tích mảng xanh và khuôn viên mặt nước rộng lớn, tạo nên chuẩn sống xanh, nghỉ dưỡng tại nhà. Dự án còn sở hữu nhiều tiện ích nội khu đẳng cấp (hệ thống rạp chiếu phim, Skydeck BBQ, skybar, siêu thị, 02 công viên trung tâm, khu vực đa năng cho người lớn/trẻ em, hồ bơi chân mây, vườn thiền và Yoga,…) cùng với hàng loạt tiện ích ngoại khu xung quanh, sẵn sàng phục vụ cư dân về sinh sống.Astral City được thiết kế theo phong cách đương đại, tối ưu hóa không gian, đan xen diện tích mảng xanh và khuôn viên mặt nước rộng lớn, tạo nên chuẩn sống xanh, nghỉ dưỡng tại nhà. Dự án còn sở hữu nhiều tiện ích nội khu đẳng cấp (hệ thống rạp chiếu phim, Skydeck BBQ, skybar, siêu thị, 02 công viên trung tâm, khu vực đa năng cho người lớn/trẻ em, hồ bơi chân mây, vườn thiền và Yoga,…) cùng với hàng loạt tiện ích ngoại khu xung quanh, sẵn sàng phục vụ cư dân về sinh sống.Astral City được thiết kế theo phong cách đương đại, tối ưu hóa không gian, đan xen diện tích mảng xanh và khuôn viên mặt nước rộng lớn, tạo nên chuẩn sống xanh, nghỉ dưỡng tại nhà. Dự án còn sở hữu nhiều tiện ích nội khu đẳng cấp (hệ thống rạp chiếu phim, Skydeck BBQ, skybar, siêu thị, 02 công viên trung tâm, khu vực đa năng cho người lớn/trẻ em, hồ bơi chân mây, vườn thiền và Yoga,…) cùng với hàng loạt tiện ích ngoại khu xung quanh, sẵn sàng phục vụ cư dân về sinh sống.a không gian, đan xen diện tích mảng xanh và khuôn viên mặt nước rộng lớn, tạo nên chuẩn sống xanh, nghỉ dưỡng tại nhà. Dự án còn sở hữu nhiều tiện ích nội khu đẳng cấp (hệ thống rạp chiếu phim, Skydeck BBQ, skybar, siêu thị, 02 công viên trung tâm, khu vực đa năng cho người lớn/trẻ em, hồ bơi chân mây, vườn thiền và Yoga,…) cùng với hàng loạt tiện ích ngoại khu xung quanh, sẵn sàng phục vụ cư dân về sinh sống.Astral City được thiết kế theo phong cách đương đại, tối ưu hóa không gian, đan xen diện tích mảng xanh và khuôn viên mặt nước rộng lớn, tạo nên chuẩn sống xanh, nghỉ dưỡng tại nhà. Dự án còn sở hữu nhiều tiện ích nội khu đẳng cấp (hệ thống rạp chiếu phim, Skydeck BBQ, skybar, siêu thị, 02 công viên trung tâm, khu vực đa năng cho người lớn/trẻ em, hồ bơi chân mây, vườn thiền và Yoga,…) cùng với hàng loạt tiện ích ngoại khu xung quanh, sẵn sàng phục vụ cư dân về sinh sống.Astral City được thiết kế theo phong cách đương đại, tối ưu hóa không gian, đan xen diện tích mảng xanh và khuôn viên mặt nước rộng lớn, tạo nên chuẩn sống xanh, nghỉ dưỡng tại nhà. Dự án còn sở hữu nhiều tiện ích nội khu đẳng cấp (hệ thống rạp chiếu phim, Skydeck BBQ, skybar, siêu thị, 02 công viên trung tâm, khu vực đa năng cho người lớn/trẻ em, hồ bơi chân mây, vườn thiền và Yoga,…) cùng với hàng loạt tiện ích ngoại khu xung quanh, sẵn sàng phục vụ cư dân về sinh sống.'),
+                  child: ExpandableTextWidget(text: product.description!),
                   margin: EdgeInsets.only(
                       left: Dimensions.width20, right: Dimensions.width20),
                 )
@@ -84,7 +97,7 @@ class RecommendedFoodDetail extends StatelessWidget {
                     backgroundColor: AppColors.mainColor,
                     iconColor: Colors.white,
                   ),
-                  BigText(text: "\$12.88 " + " X " + " 0 "),
+                  BigText(text: "\$${product.price}  X  0 "),
                   AppIcon(
                     icon: Icons.add,
                     iconSize: Dimensions.iconSize24,

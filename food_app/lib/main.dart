@@ -6,6 +6,7 @@ import 'package:food_app/pages/food/recommended_food_detail.dart';
 import 'package:food_app/pages/home/main_food_page.dart';
 import 'package:get/get.dart';
 import 'helper/dependencies.dart' as dep;
+import 'routes/route_helper.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -28,6 +29,8 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: MainFoodPage(),
+      initialRoute: RouteHelper.initial,
+      getPages: RouteHelper.routes,
     );
   }
 }
